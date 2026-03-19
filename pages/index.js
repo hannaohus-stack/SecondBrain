@@ -656,6 +656,13 @@ twoMin=2분내 가능, project=Chaeum/KRKK/12주년/개인/다시노래 or null,
 function TabToday() {
   const hour = getHour();
   const [view, setView] = useState(hour >= 5 && hour < 14 ? "morning" : "evening");
+  const [morningKey, setMorningKey] = useState(0);
+
+  const switchView = (id) => {
+    setView(id);
+    // MorningView를 강제 재마운트해서 최신 prefill 읽기
+    if (id === "morning") setMorningKey(k => k + 1);
+  };
 
   return (
     <div style={S.page}>
@@ -666,7 +673,7 @@ function TabToday() {
 
       <div style={{ display:"flex", gap:0, borderRadius:8, overflow:"hidden", border:"1px solid #2a2420" }}>
         {[["morning","◐ Morning"],["evening","◑ Evening"],["ideas","◇ 아이디어 & 프로젝트"]].map(([id,label],idx,arr) => (
-          <button key={id} onClick={()=>setView(id)} style={{
+          <button key={id} onClick={()=>switchView(id)} style={{
             flex:1, padding:"10px 6px", border:"none", cursor:"pointer",
             fontFamily:"sans-serif", fontSize:11, fontWeight:600,
             background: view===id ? "#2a2018" : "#161210",
@@ -677,7 +684,7 @@ function TabToday() {
         ))}
       </div>
 
-      {view==="morning" && <MorningView />}
+      {view==="morning" && <MorningView key={morningKey} />}
       {view==="evening" && <EveningView />}
       {view==="ideas"   && <IdeasView />}
     </div>
