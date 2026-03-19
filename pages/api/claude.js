@@ -5,26 +5,25 @@ export default async function handler(req, res) {
   if (!system || !user) return res.status(400).json({ error: "Missing fields" });
 
   try {
-    const body = JSON.stringify({
+    const payload = {
       model: "claude-sonnet-4-5",
       max_tokens: 1000,
-      system,
-      messages: [{ role: "user", content: user }],
-    });
+      system: String(system),
+      messages: [{ role: "user", content: String(user) }],
+    };
 
     const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json; charset=utf-8",
+        "Content-Type": "application/json",
         "x-api-key": process.env.ANTHROPIC_API_KEY,
         "anthropic-version": "2023-06-01",
       },
-      body,
+      body: Buffer.from(JSON.stringify(payload), "utf8"),
     });
 
     const data = await response.json();
     const text = data.content?.[0]?.text || "";
-    res.setHeader("Content-Type", "application/json; charset=utf-8");
     res.status(200).json({ text });
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -32,5 +31,5 @@ export default async function handler(req, res) {
 }
 
 export const config = {
-  api: { bodyParser: { encoding: "utf-8" } },
+  api: { bodyParser: { sizeLimit: "2mb" } },
 };
