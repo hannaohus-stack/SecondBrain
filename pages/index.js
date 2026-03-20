@@ -25,12 +25,12 @@ const PROJECT_TAGS = ["Chaeum", "KRKK", "12주년", "개인", "다시노래"];
 const TAG_COLORS   = { Chaeum: "#7a5c8a", KRKK: "#3a7a8a", "12주년": "#8a6a3a", 개인: "#6a7a5a", 다시노래: "#8a4a4a" };
 
 const CAT_META = {
-  "🔴 지금 당장":  { color: "#c8604a", bg: "#2a1a16" },
-  "💭 걱정/감정":  { color: "#9a7caa", bg: "#1e1628" },
-  "💡 아이디어":   { color: "#c8963a", bg: "#241e10" },
-  "❓ 미결정":     { color: "#4a9aaa", bg: "#101e22" },
-  "📌 나중에":     { color: "#7a9a6a", bg: "#161e12" },
-  "🧠 인사이트":   { color: "#8a7a6a", bg: "#1a1810" },
+  "🔴 지금 당장":  { color: "#c03020", bg: "#fff5f3" },
+  "💭 걱정/감정":  { color: "#7a5a9a", bg: "#f8f4ff" },
+  "💡 아이디어":   { color: "#b07020", bg: "#fffbf0" },
+  "❓ 미결정":     { color: "#2a7a9a", bg: "#f0f8ff" },
+  "📌 나중에":     { color: "#4a8a3a", bg: "#f4fff0" },
+  "🧠 인사이트":   { color: "#555",    bg: "#f8f8f8" },
 };
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
@@ -397,13 +397,13 @@ Hanna: INFP, Chaeum(브랜드 컨설팅) + KRKK(푸드 SaaS), Brand Builder & In
               return (
                 <div key={date} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:4 }}>
                   <div style={{ fontSize:10, color:isToday?"#c8a87a":"#3a2a1a", fontFamily:"monospace" }}>{DAY[i]}</div>
-                  <div style={{ width:"100%", height:46, background: (hasDump||hasMorn||hasEve)?"#1e1a12":"#0e0b09",
+                  <div style={{ width:"100%", height:46, background: (hasDump||hasMorn||hasEve)?"#f0f0f0":"#fafafa",
                     border:`1px solid ${isToday?"#4a3a20":"#1a1612"}`, borderRadius:6,
                     display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center", gap:3 }}>
                     {hasDump && <div style={{ width:5,height:5,borderRadius:"50%",background:"#c8963a" }} />}
                     {hasMorn && <div style={{ width:5,height:5,borderRadius:"50%",background:"#5a8a5a" }} />}
                     {hasEve  && <div style={{ width:5,height:5,borderRadius:"50%",background:"#4a6a8a" }} />}
-                    {!hasDump && !hasMorn && !hasEve && <div style={{ width:5,height:5,borderRadius:"50%",background:"#f8f6f0" }} />}
+                    {!hasDump && !hasMorn && !hasEve && <div style={{ width:5,height:5,borderRadius:"50%",background:"#f8f8f8" }} />}
                   </div>
                 </div>
               );
@@ -665,7 +665,7 @@ twoMin=2분내 가능, project=Chaeum/KRKK/12주년/개인/다시노래 or null,
                           </span>
                         </div>
                         <div style={{ display:"flex", gap:6, paddingLeft:16, marginTop:5, flexWrap:"wrap" }}>
-                          {item.twoMin && <span style={{ fontSize:10, background:"#fff8e8", border:"1px solid #d0a050", color:"#b06020", borderRadius:10, padding:"2px 8px", fontFamily:"monospace" }}>⚡ 2분</span>}
+                          {item.twoMin && <span style={{ fontSize:10, background:"#fff8e8", border:"1px solid #e8c060", color:"#b06020", borderRadius:10, padding:"2px 8px", fontFamily:"monospace" }}>⚡ 2분</span>}
                           {item.project && <span style={{ fontSize:10, background:TAG_COLORS[item.project]+"22", border:`1px solid ${TAG_COLORS[item.project]}55`, color:TAG_COLORS[item.project], borderRadius:10, padding:"2px 8px", fontFamily:"monospace" }}>{item.project}</span>}
                           {isSent ? (
                             <span style={{ fontSize:10, color:"#6a8a5a", fontFamily:"monospace" }}>✓ 전송됨</span>
@@ -692,7 +692,7 @@ twoMin=2분내 가능, project=Chaeum/KRKK/12주년/개인/다시노래 or null,
         <div>
           <div style={S.label}>최근 기록</div>
           {history.slice(0,3).map((h,i) => (
-            <div key={i} style={{ background:"#fafafa", border:"1px solid #1e1a16", borderRadius:6, padding:"10px 14px", marginTop:6 }}>
+            <div key={i} style={{ background:"#fafafa", border:"1px solid #eee", borderRadius:6, padding:"10px 14px", marginTop:6 }}>
               <div style={{ fontSize:10, color:"#999", fontFamily:"monospace", marginBottom:3 }}>{h.date}</div>
               <div style={{ fontSize:12, color:"#888", fontFamily:"sans-serif" }}>{h.raw.slice(0,80)}{h.raw.length>80?"...":""}</div>
             </div>
@@ -892,7 +892,7 @@ function EveningView() {
 
       {step==="tasks" && (
         <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
-          <div style={{ background:"#fafaf5", border:"1.5px solid #e0e0e0", borderRadius:10, padding:"12px 16px" }}>
+          <div style={{ background:"#fafafa", border:"1.5px solid #e0e0e0", borderRadius:10, padding:"12px 16px" }}>
             <div style={{ fontSize:10, color:"#888", fontFamily:"monospace", marginBottom:4 }}>✦ 오늘의 방향</div>
             <div style={{ fontSize:12, color:"#555", fontFamily:"sans-serif", lineHeight:1.6 }}>
               브랜드는 내 삶을 갉아먹는 성공이 아니라 <span style={{ color:"#111" }}>선택권을 늘리는 구조</span>여야 한다.
@@ -910,11 +910,11 @@ function EveningView() {
                 return (
                   <div key={task.id} onClick={()=>toggleTask(task.id)} style={{
                     display:"flex", gap:12, alignItems:"flex-start", padding:"12px 14px",
-                    background:isDone?"#141e14":"#161210",
-                    border:`1px solid ${isDone?"#2a4a2a":"#2a2420"}`,
+                    background:isDone?"#f0fff0":"#fff",
+                    border:`1px solid ${isDone?"#90d090":"#eee"}`,
                     borderRadius:8, cursor:"pointer", transition:"all .2s",
                   }}>
-                    <div style={{ width:17,height:17,borderRadius:4,border:`1.5px solid ${isDone?"#5a8a5a":"#2a2a20"}`,background:isDone?"#2a4a2a":"transparent",flexShrink:0,marginTop:2,display:"flex",alignItems:"center",justifyContent:"center" }}>
+                    <div style={{ width:17,height:17,borderRadius:4,border:`1.5px solid ${isDone?"#3a9a3a":"#ddd"}`,background:isDone?"#e0ffe0":"transparent",flexShrink:0,marginTop:2,display:"flex",alignItems:"center",justifyContent:"center" }}>
                       {isDone && <span style={{ fontSize:10,color:"#3a9a3a" }}>✓</span>}
                     </div>
                     <div style={{ flex:1 }}>
@@ -1060,7 +1060,7 @@ function IdeasView() {
               </div>
               {proj.tasks.map(task=>(
                 <div key={task.id} onClick={()=>toggleTask(proj.id,task.id)}
-                  style={{ display:"flex", alignItems:"center", gap:10, padding:"6px 0", cursor:"pointer", borderBottom:"1px solid #1e1a16", fontSize:13, fontFamily:"sans-serif" }}>
+                  style={{ display:"flex", alignItems:"center", gap:10, padding:"6px 0", cursor:"pointer", borderBottom:"1px solid #eee", fontSize:13, fontFamily:"sans-serif" }}>
                   <span style={{ color:task.done?"#6a8a5a":"#2a2820" }}>{task.done?"◆":"◇"}</span>
                   <span style={{ color:task.done?"#4a5a4a":"#c4b49a", textDecoration:task.done?"line-through":"none" }}>{task.text}</span>
                 </div>
